@@ -8,11 +8,11 @@ public class UserNotFoundException
         extends RuntimeException {
 
     public UserNotFoundException() {
-        super("User not found.");
+        super("User not found. Invalid login or password.");
     }
 
     public UserNotFoundException(String message) {
-        super("User not found.\n"+message);
+        super("User not found. Invalid login or password.\n"+message);
     }
 
 }
