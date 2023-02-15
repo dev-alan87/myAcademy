@@ -1,5 +1,6 @@
 package io.github.devalan87.myAcademy.config;
 
+import io.github.devalan87.myAcademy.domain.entity.enums.UserType;
 import io.github.devalan87.myAcademy.security.jwt.filter.JwtAuthFilter;
 import io.github.devalan87.myAcademy.security.jwt.service.JwtService;
 import io.github.devalan87.myAcademy.security.jwt.service.impl.JwtServiceImpl;
@@ -55,7 +56,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                     .requestMatchers(HttpMethod.POST,
                             "/api/user/sign-up",
-                            "/api/user/sign-in").permitAll()
+                            "/api/user/sign-in")
+                        .permitAll()
+                    .requestMatchers(HttpMethod.POST,"/api/course/**")
+                        .hasAnyAuthority(UserType.ADMIN.name(), UserType.MAINTAINER.name())
+                    .requestMatchers(HttpMethod.PUT, "/api/course/**")
+                        .hasAnyAuthority(UserType.ADMIN.name(), UserType.MAINTAINER.name())
                     .anyRequest().authenticated()
                 .and()
                     .sessionManagement()

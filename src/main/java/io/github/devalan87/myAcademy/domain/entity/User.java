@@ -23,17 +23,12 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Getter(AccessLevel.PRIVATE)
-    @Column(columnDefinition = "boolean default false")
-    private Boolean admin;
+    @Enumerated(EnumType.STRING)
+    private UserType type;
 
     @Getter(AccessLevel.PRIVATE)
     @Column(columnDefinition = "boolean default true")
     private Boolean enabled;
-
-    public Boolean isAdmin() {
-        return admin;
-    }
     public Boolean isEnabled() {
         return enabled;
     }
@@ -42,7 +37,7 @@ public class User {
         return new UserDTO(
                 username,
                 email,
-                admin,
+                type,
                 enabled
         );
     }
@@ -66,12 +61,7 @@ public class User {
                 .builder()
                 .username(username)
                 .password(password)
-                .roles(
-                        isAdmin() ?
-                                new String[] {UserType.ADMIN.name(),
-                                        UserType.USER.name()} :
-                                new String[] {UserType.USER.name()}
-                )
+                .roles(type.name())
                 .disabled(!isEnabled())
                 .build();
     }

@@ -2,6 +2,7 @@ package io.github.devalan87.myAcademy.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,8 +20,9 @@ public class ApiError {
     private String errors;
 
     public String toJSon() {
-        String json = new Gson().toJson(this);
-        return json;
+        return new GsonBuilder()
+                .setPrettyPrinting()
+                .create()
+                .toJson(this);
     }
-
 }
