@@ -2,10 +2,12 @@ package io.github.devalan87.myAcademy.service;
 
 import io.github.devalan87.myAcademy.domain.entity.Course;
 import io.github.devalan87.myAcademy.exception.CourseAlreadyRegistered;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface CourseService {
 
     Course saveCourse(Course course) throws CourseAlreadyRegistered;

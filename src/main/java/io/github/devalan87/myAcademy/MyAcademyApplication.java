@@ -1,5 +1,6 @@
 package io.github.devalan87.myAcademy;
 
+import io.github.devalan87.myAcademy.domain.entity.enums.UserType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

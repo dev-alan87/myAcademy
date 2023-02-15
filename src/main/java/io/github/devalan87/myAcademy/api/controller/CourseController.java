@@ -29,11 +29,11 @@ public class CourseController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Course updateCourse(@PathVariable Integer id, @RequestBody Course course) {
+    public Course editCourse(@PathVariable Integer id, @RequestBody Course course) {
         return service.getCourse(id).map( c -> {
             course.setId(c.getId());
             return service.saveCourse(course);
-        } ).orElseThrow( () -> new CourseNotFoundException());
+        } ).orElseThrow(CourseNotFoundException::new);
     }
 
     @PutMapping("/deprecate/{id}")
@@ -72,8 +72,10 @@ public class CourseController {
         return service.getCourseByCode(code).get();
     }
 
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<Course> listCourses() {
-        return null;
+        return service.listCourses();
     }
 
     @GetMapping("/name/{name}")

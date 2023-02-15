@@ -59,9 +59,13 @@ public class SecurityConfig {
                             "/api/user/sign-in")
                         .permitAll()
                     .requestMatchers(HttpMethod.POST,"/api/course/**")
-                        .hasAnyAuthority(UserType.ADMIN.name(), UserType.MAINTAINER.name())
+                        .hasAnyRole(UserType.ADMIN.name(),
+                                UserType.MAINTAINER.name())
                     .requestMatchers(HttpMethod.PUT, "/api/course/**")
-                        .hasAnyAuthority(UserType.ADMIN.name(), UserType.MAINTAINER.name())
+                        .hasAnyRole(UserType.ADMIN.name(),
+                                UserType.MAINTAINER.name())
+                    .requestMatchers(HttpMethod.GET, "/api/course/**")
+                        .authenticated()
                     .anyRequest().authenticated()
                 .and()
                     .sessionManagement()

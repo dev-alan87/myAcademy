@@ -24,11 +24,10 @@ public class User {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private UserType type;
+    private UserType type = UserType.USER;
 
     @Getter(AccessLevel.PRIVATE)
-    @Column(columnDefinition = "boolean default true")
-    private Boolean enabled;
+    private Boolean enabled = true;
     public Boolean isEnabled() {
         return enabled;
     }

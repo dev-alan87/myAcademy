@@ -21,12 +21,10 @@ public class Course {
     private String description;
 
     @Getter(AccessLevel.PRIVATE)
-    @Column(columnDefinition = "boolean default false")
-    private Boolean deprecated;
+    private Boolean deprecated = false;
 
     @Getter(AccessLevel.PRIVATE)
-    @Column(columnDefinition = "boolean default true")
-    private Boolean enabled;
+    private Boolean enabled = true;
 
     public Boolean isDeprecated() {
         return deprecated;

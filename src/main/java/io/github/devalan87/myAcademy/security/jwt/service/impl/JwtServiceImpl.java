@@ -63,7 +63,7 @@ public class JwtServiceImpl
         return Jwts
                 .parser()
                 .setSigningKey(signatureKey)
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
