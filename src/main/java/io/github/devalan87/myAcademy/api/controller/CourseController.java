@@ -88,4 +88,9 @@ public class CourseController {
         return service.findCourse(filter);
     }
 
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello, Course";
+    }
+
 }
